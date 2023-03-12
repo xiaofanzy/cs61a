@@ -248,6 +248,19 @@ def announce_highest(who, last_score=0, running_high=0):
     # BEGIN PROBLEM 7
     "*** YOUR CODE HERE ***"
     # END PROBLEM 7
+    def say(score0, score1):
+        score = score0 if who == 0 else score1
+        new_h = running_high  # 这个不定义，后面没发调用
+        if score > last_score:
+            new_h = score - last_score
+            if new_h <= running_high:
+                new_h = running_high
+            else:
+                print('Player', who, 'has reached a new maximum point gain.',
+                      new_h, 'point(s)!')
+        # 注意这个return ，调用之后，返回这个函数本身
+        return announce_highest(who, score, new_h)
+    return say
 
 
 #######################
