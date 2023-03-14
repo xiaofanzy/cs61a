@@ -301,6 +301,15 @@ def make_averaged(original_function, trials_count=1000):
     # BEGIN PROBLEM 8
     "*** YOUR CODE HERE ***"
     # END PROBLEM 8
+    def score_avg(*arg):
+        total, step = 0, 1  # 这个step应该从1开始。
+        while True:
+            total += original_function(*arg)
+            if trials_count != step:
+                step += 1
+            else:
+                return total / trials_count
+    return score_avg
 
 
 def max_scoring_num_rolls(dice=six_sided, trials_count=1000):
@@ -315,6 +324,16 @@ def max_scoring_num_rolls(dice=six_sided, trials_count=1000):
     # BEGIN PROBLEM 9
     "*** YOUR CODE HERE ***"
     # END PROBLEM 9
+    sum, max_score, top_num = 1, 0, 0
+    while True:
+        max_fun = make_averaged(roll_dice, trials_count)
+        score = max_fun(sum, dice)
+        if score > max_score:
+            top_num, max_score = sum, score
+        if sum == 10:
+            break
+        sum += 1
+    return top_num
 
 
 def winner(strategy0, strategy1):
