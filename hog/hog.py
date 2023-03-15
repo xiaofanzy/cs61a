@@ -372,8 +372,9 @@ def piggypoints_strategy(score, opponent_score, cutoff=8, num_rolls=6):
     """This strategy rolls 0 dice if that gives at least CUTOFF points, and
     rolls NUM_ROLLS otherwise.
     """
+    return 0 if piggy_points(opponent_score) >= cutoff else num_rolls
     # BEGIN PROBLEM 10
-    return 6  # Replace this statement
+    # Replace this statement
     # END PROBLEM 10
 
 
